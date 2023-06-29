@@ -70,8 +70,8 @@ Comments to VirtualBox emulator environment setup:
 
 ## Screenshots
 
-![screen1](https://github.com/bebre2288/linux_sellerOS/blob/master/images/screen1.png?raw=true)
-![screen2](https://github.com/bebre2288/linux_sellerOS/blob/master/images/screen2.png?raw=true)
+![screen1](https://github.com/bebre2288/linux_sellerOS/blob/main/images/screen1.png?raw=true)
+![screen2](https://github.com/bebre2288/linux_sellerOS/blob/main/images/screen2.png?raw=true)
 
 Redistributed under MIT license
 
