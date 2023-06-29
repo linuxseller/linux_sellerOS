@@ -57,9 +57,13 @@ int $0x10
     call draw_image
     jmp .continue
     .image_cl:
-    call clear_screen
-    call reset_cursor
-    mprint dbg
+    #call clear_screen
+    #call reset_cursor
+    #mprint dbg
+    movb $0, offsetx
+    movb $0, offsety
+    mov $image, %ax
+    call draw_image
     mov $0x00, %ah
     int $0x16
     jmp .continue
@@ -85,6 +89,6 @@ offsety: .word 0
 flagw: .byte 0x06
 flagh: .byte 0x03
 flag: .byte 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04
-enddd: .byte 0xFF, 0xFF, 0xFF, 0xFF
 
-#.include "image.s"
+image:
+.include "image.s"

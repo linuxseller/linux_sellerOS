@@ -137,14 +137,14 @@ draw_image:
             mov $0x00, %bx
             int $0x10
             inc %cx
-            mov imgwidth, %bl
-            add offsetx, %bl
+            mov imgwidth, %bx
+            add offsetx, %bx
             mov $0x00, %bh
             cmp %bx, %cx
             jl pimgx
         inc %dx
-        mov imgheight, %bl
-        add offsety, %bl
+        mov imgheight, %bx
+        add offsety, %bx
         mov $0x00, %bh
         cmp %bx, %dx
         jl pimgy

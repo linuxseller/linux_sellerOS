@@ -13,9 +13,9 @@ import (
 )
 
 type ImageData struct {
-    img                     image.Image
-	x0, y0                  int
-	koffX, koffY            int
+    img               image.Image
+	x0, y0            int
+	koffX, koffY      int
 	width, height     int
 }
 
@@ -34,6 +34,7 @@ var (
 )
 
 func main(){
+    resultW, resultH := 100, 100
     biosCols := make(map[int]uint32)
     biosCols[0]  = 0x000000ff
     biosCols[1]  = 0x0000aaff
@@ -65,10 +66,10 @@ func main(){
     }
     img := ImageData{imgHolder,
                         imgHolder.Bounds().Min.X, imgHolder.Bounds().Min.Y,
-                        imgHolder.Bounds().Max.X/100+1, imgHolder.Bounds().Max.Y/100+1,
+                        imgHolder.Bounds().Max.X/resultW+1, imgHolder.Bounds().Max.Y/resultH+1,
 	                    imgHolder.Bounds().Max.X, imgHolder.Bounds().Max.Y,
                     }
-    mainImgName := mainImgFileName[:strings.IndexByte(mainImgFileName, '.')]
+    mainImgName := mainImgFileName[strings.IndexByte(mainImgFileName, '/')+1:strings.IndexByte(mainImgFileName, '.')]
     fmt.Printf("%sx: .byte %d\n", mainImgName, img.width/img.koffX)
     fmt.Printf("%sy: .byte %d\n", mainImgName, img.height/img.koffY)
     fmt.Printf("%s_image: .byte ", mainImgName)
