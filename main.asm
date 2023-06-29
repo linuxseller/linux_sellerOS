@@ -3,7 +3,7 @@
 .globl _start;
 _start:
     jmp _boot
-text: .asciz "LinuxSeller OS It's size is only 4Kb!\n\r"
+text: .asciz "LinuxSeller OS It's size is only 8Kb!\n\r"
 .macro mprint str
     leaw \str, %si
     call print
@@ -57,10 +57,9 @@ int $0x10
     call draw_image
     jmp .continue
     .image_cl:
-    movb $0, offsetx
-    movb $0, offsety
-    mov $tnx, %ax
-    call draw_image
+    call clear_screen
+    call reset_cursor
+    mprint dbg
     mov $0x00, %ah
     int $0x16
     jmp .continue
@@ -75,7 +74,7 @@ bg_inst: .asciz "To change BG press <b>.\n\r"
 bg_inst_in: .asciz "Press any button from 0 to 9"
 flag_inst: .asciz "To print flag press <f>.\n\r"
 image_inst: .asciz "To print picture press <p>"
-dbg: .asciz "   !!! DEBUG !!!    "
+dbg: .asciz "sorry, deprecated for now.\n\rPress any button..."
 imgwidth: .word 0
 imgheight: .word 0
 
@@ -86,7 +85,6 @@ offsety: .word 0
 flagw: .byte 0x06
 flagh: .byte 0x03
 flag: .byte 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04
-dddx: .byte 10
-dddy: .byte 10
-ddd_image: .byte 15, 15, 15, 15, 15, 15, 11, 15, 15, 11, 15, 15, 15, 11, 15, 15, 15, 15, 15, 2, 3, 15, 15, 15, 2, 2, 11, 15, 15, 11, 11, 11, 15, 11, 15, 15, 15, 11, 15, 3, 2, 15, 11, 11, 15, 15, 15, 3, 15, 15, 15, 15, 11, 11, 11, 15, 2, 2, 15, 2, 2, 15, 15, 11, 15, 11, 2, 2, 2, 2, 15, 15, 15, 15, 15, 15, 7, 15, 3, 15, 15 
-.include "image.s"
+enddd: .byte 0xFF, 0xFF, 0xFF, 0xFF
+
+#.include "image.s"
